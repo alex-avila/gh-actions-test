@@ -31,12 +31,15 @@ jobs:
       - name: Extract branch name
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
+        
+      - name: Echo
+        run: echo ${{ steps.extract_branch.outputs.branch }}
 
       # Runs a set of commands using the runners shell
-      - name: Push update
-        run: |
-          git config user.name alex-avila
-          git config user.email alex.avilx@icloud.com
-          git add README.md
-          git commit -m "Update README.md"
-          git push origin ${{ steps.extract_branch.outputs.branch }}
+#       - name: Push update
+#         run: |
+#           git config user.name alex-avila
+#           git config user.email alex.avilx@icloud.com
+#           git add README.md
+#           git commit -m "Update README.md"
+#           git push origin ${{ steps.extract_branch.outputs.branch }}
